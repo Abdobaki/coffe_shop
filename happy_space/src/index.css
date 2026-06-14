@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "EB Garamond", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --color-primary-dark: #1a120a;
+  --color-dusty-gold: #a07850;
+  --color-warm-cream: #fef9f2;
+  --color-cream-card: #f8f3ec;
+  --color-cream-border: #d4c4a8;
+  --color-cream-divider: #ede5d8;
+}
+
+@layer utilities {
+  .hairline-border {
+    border: 0.5px solid var(--color-cream-border);
+  }
+}
+
+.img-sepia {
+  filter: sepia(0.2) contrast(1.05) brightness(0.98);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.img-sepia:hover {
+  filter: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.dot-leader {
+  position: relative;
+  overflow: hidden;
+}
+
+.dot-leader::after {
+  content: " . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ";
+  position: absolute;
+  bottom: 0px;
+  color: var(--color-cream-border);
+  font-family: inherit;
+  font-weight: 300;
+  font-size: 14px;
+}
+

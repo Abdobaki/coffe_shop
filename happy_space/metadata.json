@@ -1,0 +1,6 @@
+{
+  "name": "Happy Space",
+  "description": "Elegant Parisian-inspired Algerian salon de thé, café, and pâtisserie on Rue Didouche Mourad with interactive menu, customization, order tracking, and table booking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
