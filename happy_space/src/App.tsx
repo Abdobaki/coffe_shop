@@ -23,7 +23,14 @@ import {
   ChevronRight,
   BookOpen,
   Eye,
-  Utensils
+  Utensils,
+  Leaf,
+  Settings,
+  Key,
+  Cake,
+  Star,
+  ArrowUpRight,
+  ArrowDownRight
 } from 'lucide-react';
 import { MENU_ITEMS, HIGHLIGHTS_IDS, DICTIONARY } from './data';
 import { MenuItem, CartItem, Reservation } from './types';
@@ -150,19 +157,19 @@ export default function App() {
     fr: {
       tags: {
         all: 'Toutes les Spécialités',
-        SIGNATURE: 'Signature ✨',
-        FAVORI: 'Favoris ❤️',
-        VEGAN: 'Végétarien 🍃',
-        NEW: 'Nouveau 🆕'
+        SIGNATURE: 'Signature',
+        FAVORI: 'Favoris',
+        VEGAN: 'Végétarien',
+        NEW: 'Nouveau'
       },
       sort: {
         label: 'Trier par',
         default: 'Ordre classique',
-        'price-asc': 'Prix croissant ↗',
-        'price-desc': 'Prix décroissant ↘',
-        popular: 'Popularité ⭐'
+        'price-asc': 'Prix croissant',
+        'price-desc': 'Prix décroissant',
+        popular: 'Popularité'
       },
-      customizableOnly: 'Personnalisables uniquement ⚙️',
+      customizableOnly: 'Personnalisables uniquement',
       activeFilters: 'Filtres actifs',
       resultsFound: 'délices correspondants',
       clearAll: 'Vider tout',
@@ -171,19 +178,19 @@ export default function App() {
     ar: {
       tags: {
         all: 'جميع الأصناف الخاصة',
-        SIGNATURE: 'توقيع الدار ✨',
-        FAVORI: 'المفضلة ❤️',
-        VEGAN: 'نباتي 🍃',
-        NEW: 'جديد 🆕'
+        SIGNATURE: 'توقيع الدار',
+        FAVORI: 'المفضلة',
+        VEGAN: 'نباتي',
+        NEW: 'جديد'
       },
       sort: {
         label: 'ترتيب حسب',
         default: 'الترتيب الكلاسيكي',
-        'price-asc': 'السعر: من الأقل للأعلى ↗',
-        'price-desc': 'السعر: من الأعلى للأقل ↘',
-        popular: 'الأكثر شعبية ⭐'
+        'price-asc': 'السعر: من الأقل للأعلى',
+        'price-desc': 'السعر: من الأعلى للأقل',
+        popular: 'الأكثر شعبية'
       },
-      customizableOnly: 'قابل للتخصيص فقط ⚙️',
+      customizableOnly: 'قابل للتخصيص فقط',
       activeFilters: 'التصفيات النشطة',
       resultsFound: 'صنف متطابق',
       clearAll: 'مسح الكل',
@@ -442,7 +449,7 @@ export default function App() {
               }`}
               id="header-admin-nav-btn"
             >
-              🔑 {lang === 'ar' ? 'الإدارة' : 'Admin'}
+              <Key className="w-4 h-4 inline-block mr-1" /> {lang === 'ar' ? 'الإدارة' : 'Admin'}
             </button>
           </nav>
 
@@ -594,7 +601,7 @@ export default function App() {
                         }}
                         className="text-[9px] uppercase tracking-widest px-2.5 py-1.5 border border-[#d4c4a8]/40 hover:bg-[#1a120a] hover:text-white transition-all bg-[#fef9f2] text-[#4d453f] cursor-pointer"
                       >
-                        ✨ {lang === 'ar' ? 'تواقيع الدار' : 'Signatures'}
+                        <Sparkles className="w-3 h-3 inline-block mr-1" /> {lang === 'ar' ? 'تواقيع الدار' : 'Signatures'}
                       </button>
                       <button
                         onClick={() => {
@@ -604,7 +611,7 @@ export default function App() {
                         }}
                         className="text-[9px] uppercase tracking-widest px-2.5 py-1.5 border border-[#d4c4a8]/40 hover:bg-[#1a120a] hover:text-white transition-all bg-[#fef9f2] text-[#4d453f] cursor-pointer"
                       >
-                        ❤️ {lang === 'ar' ? 'المفضلة' : 'Favoris'}
+                        <Heart className="w-3 h-3 inline-block mr-1" /> {lang === 'ar' ? 'المفضلة' : 'Favoris'}
                       </button>
                       <button
                         onClick={() => {
@@ -614,7 +621,7 @@ export default function App() {
                         }}
                         className="text-[9px] uppercase tracking-widest px-2.5 py-1.5 border border-[#d4c4a8]/40 hover:bg-[#1a120a] hover:text-white transition-all bg-[#fef9f2] text-[#4d453f] cursor-pointer"
                       >
-                        ☕ {lang === 'ar' ? 'القهوة والشاي' : 'Cafés & Thés'}
+                        <Coffee className="w-3 h-3 inline-block mr-1" /> {lang === 'ar' ? 'القهوة والشاي' : 'Cafés & Thés'}
                       </button>
                       <button
                         onClick={() => {
@@ -624,7 +631,7 @@ export default function App() {
                         }}
                         className="text-[9px] uppercase tracking-widest px-2.5 py-1.5 border border-[#d4c4a8]/40 hover:bg-[#1a120a] hover:text-white transition-all bg-[#fef9f2] text-[#4d453f] cursor-pointer"
                       >
-                        🍰 {lang === 'ar' ? 'الحلويات' : 'Pâtisseries'}
+                        <Cake className="w-3 h-3 inline-block mr-1" /> {lang === 'ar' ? 'الحلويات' : 'Pâtisseries'}
                       </button>
                     </div>
                   </div>
@@ -1122,7 +1129,7 @@ export default function App() {
 
                       {onlyCustomizable && (
                         <span className="inline-flex items-center gap-1.5 bg-[#f8f3ec] border border-[#d4c4a8] text-[9.5px] px-2 py-1 text-[#1a120a]">
-                          <span>⚙️ {lang === 'ar' ? 'قابل للتخصيص' : 'Personnalisable'}</span>
+                          <span className="flex items-center gap-1"><Settings className="w-3 h-3" /> {lang === 'ar' ? 'قابل للتخصيص' : 'Personnalisable'}</span>
                           <X className="w-2.5 h-2.5 cursor-pointer text-[#7f756e] hover:text-[#1a120a]" onClick={() => setOnlyCustomizable(false)} />
                         </span>
                       )}
@@ -1398,7 +1405,7 @@ export default function App() {
               className="text-[#fef9f2]/70 hover:text-white font-sans text-xs select-none hover:underline"
               id="footer-admin-btn"
             >
-              🔑 {lang === 'ar' ? 'لوحة التحكم' : 'Espace Gestion'}
+              <Key className="w-4 h-4 inline-block mr-1" /> {lang === 'ar' ? 'لوحة التحكم' : 'Espace Gestion'}
             </button>
           </div>
 

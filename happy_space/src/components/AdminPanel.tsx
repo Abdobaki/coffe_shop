@@ -12,7 +12,12 @@ import {
   Layout, 
   RefreshCw, 
   AlertCircle, 
-  Image as ImageIcon 
+  Image as ImageIcon,
+  Leaf,
+  Settings,
+  Heart,
+  Camera,
+  Cake
 } from 'lucide-react';
 import { MenuItem } from '../types';
 
@@ -59,12 +64,12 @@ const ADMIN_DICT = {
     },
     tags: {
       none: 'Aucun badge élevé',
-      SIGNATURE: 'Signature ✨',
-      FAVORI: 'Favori ❤️',
-      VEGAN: 'Végétarien 🍃',
-      NEW: 'Nouveau 🆕'
+      SIGNATURE: 'Signature',
+      FAVORI: 'Favori',
+      VEGAN: 'Végétarien',
+      NEW: 'Nouveau'
     },
-    customizable: 'Personnalisable ⚙️',
+    customizable: 'Personnalisable',
     yes: 'Oui',
     no: 'Non'
   },
@@ -102,12 +107,12 @@ const ADMIN_DICT = {
     },
     tags: {
       none: 'بدون شارة',
-      SIGNATURE: 'توقيع الدار ✨',
-      FAVORI: 'المفضلة ❤️',
-      VEGAN: 'نباتي 🍃',
-      NEW: 'جديد 🆕'
+      SIGNATURE: 'توقيع الدار',
+      FAVORI: 'المفضلة',
+      VEGAN: 'نباتي',
+      NEW: 'جديد'
     },
-    customizable: 'قابل للتخصيص ⚙️',
+    customizable: 'قابل للتخصيص',
     yes: 'نعم',
     no: 'لا'
   }
@@ -327,7 +332,7 @@ export default function AdminPanel({ lang, menuItems, onAddItem, onDeleteItem, o
           className="text-[10px] uppercase tracking-widest px-3 py-1.5 border border-[#d4c4a8] hover:bg-[#1a120a] hover:text-white transition-colors cursor-pointer"
           id="admin-lock-session"
         >
-          {lang === 'ar' ? 'قفل الجلسة 🔒' : 'Verrouiller la session 🔒'}
+          <span className="flex items-center gap-1"><Lock className="w-3 h-3" /> {lang === 'ar' ? 'قفل الجلسة' : 'Verrouiller la session'}</span>
         </button>
       </div>
 
@@ -517,7 +522,7 @@ export default function AdminPanel({ lang, menuItems, onAddItem, onDeleteItem, o
                       className="text-[8px] tracking-wide px-2 py-1.5 border border-[#ede5d8] hover:border-[#a07850] hover:bg-[#1a120a] hover:text-white transition-all font-sans cursor-pointer bg-white"
                       id={`stock-btn-${idx}`}
                     >
-                      📷 {imgObj.name}
+                      <Camera className="w-4 h-4 inline-block mr-1" /> {imgObj.name}
                     </button>
                   ))}
                 </div>
@@ -579,7 +584,7 @@ export default function AdminPanel({ lang, menuItems, onAddItem, onDeleteItem, o
                                 </div>
                               ) : (
                                 <div className="w-12 h-12 flex-shrink-0 bg-[#f8f3ec] border border-[#ede5d8] flex items-center justify-center text-xs">
-                                  ☕
+                                  <Coffee className="w-5 h-5 text-[#a07850] opacity-50" />
                                 </div>
                               )}
 
