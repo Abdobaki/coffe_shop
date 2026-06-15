@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+}
+
 @theme {
   --font-serif: "EB Garamond", Georgia, serif;
   --font-sans: "Inter", system-ui, sans-serif;

@@ -24,6 +24,7 @@ import {
   BookOpen,
   Eye,
   Utensils,
+  Menu,
   Leaf,
   Settings,
   Key,
@@ -91,6 +92,7 @@ export default function App() {
     return saved ? JSON.parse(saved) : [];
   });
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [tableNumber, setTableNumber] = useState('');
   const [isTakeaway, setIsTakeaway] = useState(false);
   const [pickupTime, setPickupTime] = useState('14:00');
@@ -395,7 +397,6 @@ export default function App() {
       
       {/* Dynamic top info promo for Algerian local jazz sessions */}
       <div className="bg-[#1a120a] text-[#fef9f2] text-xs py-2 px-4 text-center border-b border-[#a07850]/20 flex items-center justify-center gap-2">
-        <Sparkles className="w-3 H-3 text-[#a07850] animate-pulse" />
         <span className="font-serif italic font-light tracking-wide text-[11px]">
           {t('jazzLiveAt')}
         </span>
@@ -403,14 +404,14 @@ export default function App() {
 
       {/* Header NavBar */}
       <header className="sticky top-0 z-40 bg-[#fef9f2]/95 backdrop-blur-md border-b border-[#d4c4a8]/30 transition-all duration-300">
-        <div className="max-w-[680px] mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="max-w-[680px] mx-auto px-4 sm:px-6 min-h-[4rem] py-2 flex flex-wrap items-center justify-between gap-y-2">
           
           {/* Logo Brand */}
           <div 
             onClick={() => setCurrentView('home')} 
-            className="cursor-pointer group flex flex-col justify-center select-none"
+            className="cursor-pointer group flex flex-col justify-center select-none shrink-0 mr-2"
           >
-            <h1 className="font-serif text-2xl font-light tracking-tight text-[#1a120a] transition-colors group-hover:text-[#a07850] duration-300">
+            <h1 className="font-serif text-xl sm:text-2xl font-light tracking-tight text-[#1a120a] transition-colors group-hover:text-[#a07850] duration-300 whitespace-nowrap">
               Happy Space
             </h1>
             <span className="text-[9px] uppercase tracking-[0.2em] text-[#a07850] -mt-0.5">
@@ -419,7 +420,7 @@ export default function App() {
           </div>
 
           {/* Navigation Links */}
-          <nav className="flex items-center gap-4 sm:gap-5">
+          <nav className="hidden sm:flex items-center gap-4">
             <button 
               onClick={() => { setCurrentView('home'); scrollToId('hero'); }}
               className={`text-xs uppercase tracking-widest transition-colors ${
@@ -481,10 +482,19 @@ export default function App() {
               </button>
             )}
 
+            {/* Mobile Menu Trigger */}
+            <button 
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="sm:hidden p-2 border border-[#d4c4a8]/50 hover:bg-[#1a120a] hover:text-[#fef9f2] transition-colors flex items-center justify-center cursor-pointer"
+              aria-label="Menu"
+            >
+              <Menu className="w-4 h-4" />
+            </button>
+
             {/* Shopping Cart Trigger */}
             <button 
               onClick={() => setIsCartOpen(true)}
-              className="p-2 bg-[#1a120a] text-[#fef9f2] hover:bg-[#a07850] transition-colors relative flex items-center justify-center cursor-pointer"
+              className="hidden sm:flex p-2 bg-[#1a120a] text-[#fef9f2] hover:bg-[#a07850] transition-colors relative items-center justify-center cursor-pointer"
               aria-label="Voir le panier"
               id="cart-trigger"
             >
@@ -724,7 +734,7 @@ export default function App() {
               </section>
 
               {/* Atmosphere Horizontal Scroll Gallery */}
-              <section className="mt-12 bg-white py-12 border-y border-[#d4c4a8]/30">
+              <section className="mt-12 bg-white py-12 border-y border-[#d4c4a8]/30 overflow-hidden max-w-full">
                 <div className="px-6 flex justify-between items-end mb-6">
                   <div>
                     <h3 className="font-sans text-xs text-[#a07850] tracking-[0.25em] font-medium uppercase">
@@ -1816,6 +1826,89 @@ export default function App() {
                 </div>
               )}
 
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* MOBILE SIDEBAR MENU */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <div className="fixed inset-0 z-50 flex justify-end sm:hidden">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="absolute inset-0 bg-[#1a120a]/80 backdrop-blur-xs"
+            />
+            <motion.div 
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25 }}
+              className="bg-[#fef9f2] w-full max-w-[440px] h-full shadow-2xl relative z-10 flex flex-col border-l border-[#d4c4a8]/40"
+              style={{ direction: lang === 'ar' ? 'rtl' : 'ltr' }}
+            >
+              <div className="p-6 border-b border-[#ede5d8] flex items-center justify-between">
+                <h3 className="font-serif text-xl font-light text-[#1a120a]">
+                  Happy Space
+                </h3>
+                <button 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="p-1 hover:text-[#a07850] transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="flex-grow overflow-y-auto p-6 flex flex-col gap-6">
+                <button 
+                  onClick={() => { setCurrentView('home'); scrollToId('hero'); setIsMobileMenuOpen(false); }}
+                  className={`text-left text-lg tracking-widest transition-colors ${
+                    currentView === 'home' 
+                      ? 'text-[#a07850] font-medium' 
+                      : 'text-[#4d453f] hover:text-[#1a120a]'
+                  }`}
+                >
+                  {t('home')}
+                </button>
+                <button 
+                  onClick={() => { setCurrentView('menu'); setIsMobileMenuOpen(false); }}
+                  className={`text-left text-lg tracking-widest transition-colors ${
+                    currentView === 'menu' 
+                      ? 'text-[#a07850] font-medium' 
+                      : 'text-[#4d453f] hover:text-[#1a120a]'
+                  }`}
+                >
+                  {t('menu')}
+                </button>
+                
+                <button 
+                  onClick={() => { setIsCartOpen(true); setIsMobileMenuOpen(false); }}
+                  className="flex items-center justify-between text-left text-lg tracking-widest text-[#4d453f] hover:text-[#1a120a] transition-colors"
+                >
+                  <span className="flex items-center gap-2">
+                    <ShoppingBag className="w-4 h-4" /> Panier
+                  </span>
+                  <span className="bg-[#a07850] text-white w-5 h-5 rounded-full text-[10px] flex items-center justify-center font-bold">
+                    {cart.reduce((s, i) => s + i.quantity, 0)}
+                  </span>
+                </button>
+
+                <div className="mt-8 pt-8 border-t border-[#ede5d8]/50">
+                  <button 
+                    onClick={() => { setCurrentView('admin'); setIsMobileMenuOpen(false); }}
+                    className={`flex items-center gap-2 text-left text-sm tracking-widest transition-colors ${
+                      currentView === 'admin' 
+                        ? 'text-[#a07850] font-medium' 
+                        : 'text-[#4d453f] hover:text-[#1a120a]'
+                    }`}
+                  >
+                    <Key className="w-4 h-4" /> {lang === 'ar' ? 'الإدارة' : 'Admin'}
+                  </button>
+                </div>
+              </div>
             </motion.div>
           </div>
         )}
